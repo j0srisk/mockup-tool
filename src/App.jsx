@@ -38,6 +38,7 @@ function App() {
 	const [renderedUrl, setRenderedUrl] = useState("https://josephrisk.com");
 	const [ratio, setRatio] = useState("16/9");
 	const [backgroundIndex, setBackgroundIndex] = useState(0);
+	const [noise, setNoise] = useState("");
 
 	function handleUrlChange(e) {
 		setUrl(e.target.value);
@@ -70,6 +71,14 @@ function App() {
 		}
 	}
 
+	function toggleNoise() {
+		if (noise == "") {
+			setNoise("url(noise.webp)");
+		} else {
+			setNoise("");
+		}
+	}
+
 	return (
 		<div
 			className={`relative flex h-screen w-screen flex-col items-center justify-center ${GradientOptions[backgroundIndex]} overflow-hidden`}
@@ -98,7 +107,7 @@ function App() {
 					<path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
 				</svg>
 			</div>
-			<div className="absolute -top-11 left-auto flex  w-1/2 translate-y-11 items-center justify-between gap-2">
+			<div className="absolute -top-11 left-auto z-20 flex  w-1/2 translate-y-11 items-center justify-between gap-2">
 				<div className="flex h-11 w-full flex-1 gap-2 rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-2 shadow-sm backdrop-blur-sm ">
 					<input
 						className="flex-1 rounded-md border border-white border-opacity-40 bg-transparent px-2 text-white shadow-sm"
@@ -192,13 +201,32 @@ function App() {
 							/>
 						</svg>
 					</button>
+					<button
+						className="rounded-md border border-white border-opacity-40 px-2 shadow-sm"
+						id="mobile"
+						onClick={() => toggleNoise()}
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							strokeWidth={1.5}
+							className="h-4 w-4 stroke-white"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
+							/>
+						</svg>
+					</button>
 				</div>
 			</div>
 			<div
-				className="absolute h-[860px] scale-[.8] overflow-hidden rounded-[12px] border border-dashed border-white border-opacity-30 p-2"
+				className={`absolute h-[860px] scale-[.8] overflow-hidden rounded-[12px] border border-dashed border-white border-opacity-30 bg-opacity-10 bg-[${noise}] bg-repeat p-2`}
 				style={{ aspectRatio: 16 / 9 }}
 			>
-				<div className="w-ful h-full"></div>
+				<div className="h-full w-full"></div>
 			</div>
 		</div>
 	);
