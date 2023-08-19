@@ -223,8 +223,8 @@ function App() {
 				</div>
 			</div>
 			<div
-				className={`absolute h-[860px] scale-[.8] overflow-hidden rounded-[12px] border border-dashed border-white border-opacity-30 bg-opacity-10 bg-[${noise}] bg-repeat p-2`}
-				style={{ aspectRatio: 16 / 9 }}
+				className="absolute h-[860px] scale-[.8] overflow-hidden rounded-[12px] border border-dashed border-white border-opacity-30 bg-opacity-10 bg-repeat p-2"
+				style={{ aspectRatio: 16 / 9, backgroundImage: noise }}
 			>
 				<div className="h-full w-full"></div>
 			</div>
