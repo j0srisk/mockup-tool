@@ -72,64 +72,46 @@ function App() {
 
 	return (
 		<div
-			className={`relative flex h-screen w-screen flex-col items-center justify-center p-28 ${GradientOptions[backgroundIndex]}`}
+			className={`relative flex h-screen w-screen flex-col items-center justify-center ${GradientOptions[backgroundIndex]} overflow-hidden`}
 		>
-			<div className="flex aspect-video w-full items-center justify-center rounded-xl">
-				<div className="flex aspect-video h-full w-full items-center justify-center p-10">
-					<div
-						className="flex h-full flex-col items-center justify-between gap-2 overflow-hidden rounded-[12px] border border-white border-opacity-40 bg-white bg-opacity-40 p-2 shadow-lg backdrop-blur-sm"
-						style={{ aspectRatio: ratio }}
-					>
-						<div className="flex h-fit w-full gap-2 ">
-							<div className="flex h-3 w-3 rounded-full bg-[#FF5F57]"></div>
-							<div className="flex h-3 w-3 rounded-full bg-[#FEBC2E]"></div>
-							<div className="flex h-3 w-3 rounded-full bg-[#29C740]"></div>
-						</div>
-						<iframe
-							src={renderedUrl}
-							className=" h-full w-full  rounded-[6px]"
-							scrolling="no"
-						></iframe>
+			<div>
+				<div
+					className="z-10 flex aspect-video h-[860px] scale-[.66] flex-col gap-4 overflow-hidden rounded-[12px] border border-white border-opacity-40 bg-white bg-opacity-40 p-4 shadow-lg backdrop-blur-sm"
+					style={{ aspectRatio: ratio }}
+				>
+					<div className="flex h-fit w-full gap-3">
+						<div className="flex h-4 w-4 rounded-full bg-[#FF5F57]"></div>
+						<div className="flex h-4 w-4 rounded-full bg-[#FEBC2E]"></div>
+						<div className="flex h-4 w-4 rounded-full bg-[#29C740]"></div>
 					</div>
+					<iframe src={renderedUrl} className="h-full w-full rounded-[6px]" scrolling="no"></iframe>
 				</div>
 			</div>
-			<div className="absolute left-auto top-0 flex hidden items-center justify-between rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-2 px-6 shadow-lg backdrop-blur-sm">
+			<div className="absolute left-auto top-0 flex hidden items-center justify-between rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-1 px-4 shadow-sm backdrop-blur-sm">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 24 24"
 					strokeWidth={1.5}
-					className="h-[24px] w-[24px] stroke-white opacity-40"
+					className="h-4 w-4 stroke-white "
 				>
 					<path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
 				</svg>
 			</div>
-			<div className="absolute left-auto top-0 flex h-fit w-full items-center justify-between px-28">
-				<div className="flex w-full gap-2 rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-2 shadow-lg backdrop-blur-sm ">
+			<div className="absolute -top-11 left-auto flex  w-1/2 translate-y-11 items-center justify-between gap-2">
+				<div className="flex h-11 w-full flex-1 gap-2 rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-2 shadow-sm backdrop-blur-sm ">
 					<input
 						className="flex-1 rounded-md border border-white border-opacity-40 bg-transparent px-2 text-white shadow-sm"
 						value={url}
 						onChange={handleUrlChange}
 						onBlur={handleUrlBlur}
+						onKeyDown={(e) => {
+							if (e.key === "Enter") {
+								handleUrlBlur();
+								e.target.blur();
+							}
+						}}
 					></input>
-					<button
-						className="flex w-24 items-center justify-center rounded-md border border-white border-opacity-40 px-2 shadow-sm"
-						onClick={randomGradient}
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							strokeWidth={1.5}
-							className="h-4 w-4 stroke-white"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z"
-							/>
-						</svg>
-					</button>
 					<button
 						className="rounded-md border border-white border-opacity-40 px-2 shadow-sm"
 						id="desktop"
@@ -191,6 +173,32 @@ function App() {
 						</svg>
 					</button>
 				</div>
+				<div className="flex h-11 w-fit gap-2 rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-2 shadow-sm backdrop-blur-sm ">
+					<button
+						className="flex w-24 items-center justify-center rounded-md border border-white border-opacity-40 px-2 shadow-sm"
+						onClick={randomGradient}
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							strokeWidth={1.5}
+							className="h-4 w-4 stroke-white"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z"
+							/>
+						</svg>
+					</button>
+				</div>
+			</div>
+			<div
+				className="absolute h-[860px] scale-[.8] overflow-hidden rounded-[12px] border border-dashed border-white border-opacity-30 p-2"
+				style={{ aspectRatio: 16 / 9 }}
+			>
+				<div className="w-ful h-full"></div>
 			</div>
 		</div>
 	);
