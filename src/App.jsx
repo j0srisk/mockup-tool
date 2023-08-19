@@ -74,7 +74,7 @@ function App() {
 		<div
 			className={`relative flex h-screen w-screen flex-col items-center justify-center ${GradientOptions[backgroundIndex]} overflow-hidden`}
 		>
-			<div>
+			<div className="z-10">
 				<div
 					className="z-10 flex aspect-video h-[860px] scale-[.66] flex-col gap-4 overflow-hidden rounded-[12px] border border-white border-opacity-40 bg-white bg-opacity-40 p-4 shadow-lg backdrop-blur-sm"
 					style={{ aspectRatio: ratio }}
