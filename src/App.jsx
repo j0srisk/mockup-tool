@@ -31,6 +31,30 @@ const GradientOptions = [
 	"bg-gradient-to-r from-cyan-500 via-cyan-700 to-cyan-900",
 	"bg-gradient-to-r from-green-500 via-green-800 to-green-900",
 	"bg-gradient-to-r from-yellow-500 via-yellow-800 to-yellow-900",
+	"bg-gradient-to-r from-blue-500 via-blue-800 to-blue-900",
+	"bg-gradient-to-r from-indigo-500 via-indigo-800 to-indigo-900",
+	"bg-gradient-to-r from-pink-500 via-pink-800 to-pink-900",
+	"bg-gradient-to-r from-red-500 via-red-800 to-red-900",
+	"bg-gradient-to-r from-orange-500 via-orange-800 to-orange-900",
+	"bg-gradient-to-r from-amber-500 via-amber-800 to-amber-900",
+	"bg-gradient-to-r from-yellow-500 via-yellow-800 to-yellow-900",
+	"bg-gradient-to-r from-lime-500 via-lime-800 to-lime-900",
+	"bg-gradient-to-r from-green-500 via-green-800 to-green-900",
+	"bg-gradient-to-r from-emerald-500 via-emerald-800 to-emerald-900",
+	"bg-gradient-to-r from-teal-500 via-teal-800 to-teal-900",
+	"bg-gradient-to-r from-cyan-500 via-cyan-800 to-cyan-900",
+	"bg-gradient-to-r from-lightBlue-500 via-lightBlue-800 to-lightBlue-900",
+	"bg-gradient-to-r from-blue-500 via-blue-800 to-blue-900",
+	"bg-gradient-to-r from-indigo-500 via-indigo-800 to-indigo-900",
+	"bg-gradient-to-r from-violet-500 via-violet-800 to-violet-900",
+	"bg-gradient-to-r from-purple-500 via-purple-800 to-purple-900",
+	"bg-gradient-to-r from-fuchsia-500 via-fuchsia-800 to-fuchsia-900",
+	"bg-gradient-to-r from-pink-500 via-pink-800 to-pink-900",
+	"bg-gradient-to-r from-rose-500 via-rose-800 to-rose-900",
+	"bg-gradient-to-r from-gray-500 via-gray-800 to-gray-900",
+	"bg-gradient-to-r from-coolGray-500 via-coolGray-800 to-coolGray-900",
+	"bg-gradient-to-r from-trueGray-500 via-trueGray-800 to-trueGray-900",
+	"bg-gradient-to-r from-warmGray-500 via-warmGray-800 to-warmGray-900",
 ];
 
 function App() {
@@ -83,7 +107,7 @@ function App() {
 		<div
 			className={`relative flex h-screen w-screen flex-col items-center justify-center ${GradientOptions[backgroundIndex]} overflow-hidden`}
 		>
-			<div className="z-10">
+			<div className="z-10 translate-y-5">
 				<div
 					className="z-10 flex aspect-video h-[860px] scale-[.66] flex-col gap-4 overflow-hidden rounded-[12px] border border-white border-opacity-40 bg-white bg-opacity-40 p-4 shadow-lg backdrop-blur-sm"
 					style={{ aspectRatio: ratio }}
@@ -223,7 +247,7 @@ function App() {
 				</div>
 			</div>
 			<div
-				className="absolute h-[860px] scale-[.8] overflow-hidden rounded-[12px] border border-dashed border-white border-opacity-30 bg-opacity-10 bg-repeat p-2"
+				className="absolute h-[860px] translate-y-5 scale-[.8] overflow-hidden rounded-[12px] border border-dashed border-white border-opacity-30 bg-opacity-10 bg-repeat p-2"
 				style={{ aspectRatio: 16 / 9, backgroundImage: noise }}
 			>
 				<div className="h-full w-full"></div>
