@@ -61,8 +61,20 @@ function App() {
 	const [url, setUrl] = useState("https://josephrisk.com");
 	const [renderedUrl, setRenderedUrl] = useState("https://josephrisk.com");
 	const [ratio, setRatio] = useState("16/9");
-	const [backgroundIndex, setBackgroundIndex] = useState(0);
-	const [noise, setNoise] = useState("");
+	const [backgroundIndex, setBackgroundIndex] = useState(
+		Math.floor(Math.random() * GradientOptions.length),
+	);
+	const [noise, setNoise] = useState(null);
+	const [image, setImage] = useState(null);
+
+	function handleImageUpload(e) {
+		const uploadedImage = e.target.files[0];
+		setImage(URL.createObjectURL(uploadedImage));
+	}
+
+	function removeImage() {
+		setImage(null);
+	}
 
 	function handleUrlChange(e) {
 		setUrl(e.target.value);
@@ -117,10 +129,22 @@ function App() {
 						<div className="flex h-4 w-4 rounded-full bg-[#FEBC2E]"></div>
 						<div className="flex h-4 w-4 rounded-full bg-[#29C740]"></div>
 					</div>
-					<iframe src={renderedUrl} className="h-full w-full rounded-[6px]" scrolling="no"></iframe>
+					<div className="relative h-full w-full">
+						<iframe
+							src={renderedUrl}
+							className="h-full w-full rounded-[6px]"
+							scrolling="no"
+						></iframe>
+						{image && (
+							<img
+								src={image}
+								className="absolute top-0 h-full w-full rounded-[6px] object-cover object-top"
+							/>
+						)}
+					</div>
 				</div>
 			</div>
-			<div className="absolute left-auto top-0 flex hidden items-center justify-between rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-1 px-4 shadow-sm backdrop-blur-sm">
+			<div className="absolute left-auto top-0 hidden items-center justify-between rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-1 px-4 shadow-sm backdrop-blur-sm">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
@@ -132,9 +156,53 @@ function App() {
 				</svg>
 			</div>
 			<div className="absolute -top-11 left-auto z-20 flex  w-1/2 translate-y-11 items-center justify-between gap-2">
+				<div className="flex h-11 w-fit gap-2 rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-2 shadow-sm backdrop-blur-sm ">
+					{image ? (
+						<button
+							onClick={removeImage}
+							className="relative flex h-full items-center justify-center rounded-md border border-white border-opacity-40 px-2 shadow-sm"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								strokeWidth={1.5}
+								className="h-4 w-4 stroke-white"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+								/>
+							</svg>
+						</button>
+					) : (
+						<div className="relative flex h-full items-center justify-center rounded-md border border-white border-opacity-40 px-2 shadow-sm ">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								strokeWidth={1.5}
+								className="h-4 w-4 stroke-white"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15m0-3l-3-3m0 0l-3 3m3-3V15"
+								/>
+							</svg>
+							<input
+								type="file"
+								accept="image/*"
+								onChange={handleImageUpload}
+								className="absolute left-0 top-0 h-full w-full rounded-md bg-red-400 opacity-0 "
+							/>
+						</div>
+					)}
+				</div>
 				<div className="flex h-11 w-full flex-1 gap-2 rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-2 shadow-sm backdrop-blur-sm ">
 					<input
-						className="flex-1 rounded-md border border-white border-opacity-40 bg-transparent px-2 text-white shadow-sm"
+						className="flex-1 rounded-md border border-white border-opacity-40 bg-transparent px-2 text-sm text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-40"
 						value={url}
 						onChange={handleUrlChange}
 						onBlur={handleUrlBlur}
@@ -230,19 +298,35 @@ function App() {
 						id="mobile"
 						onClick={() => toggleNoise()}
 					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							strokeWidth={1.5}
-							className="h-4 w-4 stroke-white"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
-							/>
-						</svg>
+						{noise ? (
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								strokeWidth={1.5}
+								className="h-4 w-4 stroke-white"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.531V19.94a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.506-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.395C2.806 8.757 3.63 8.25 4.51 8.25H6.75z"
+								/>
+							</svg>
+						) : (
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								strokeWidth={1.5}
+								className="h-4 w-4 stroke-white"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
+								/>
+							</svg>
+						)}
 					</button>
 				</div>
 			</div>
