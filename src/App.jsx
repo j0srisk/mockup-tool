@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const GradientOptions = [
+	"bg-gradient-to-r from-gray-900 to-black",
 	"bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500",
 	"bg-gradient-to-r from-blue-500 via-teal-500 to-green-500",
 	"bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500",
@@ -61,9 +62,7 @@ function App() {
 	const [url, setUrl] = useState("https://josephrisk.com");
 	const [renderedUrl, setRenderedUrl] = useState("https://josephrisk.com");
 	const [ratio, setRatio] = useState("16/9");
-	const [backgroundIndex, setBackgroundIndex] = useState(
-		Math.floor(Math.random() * GradientOptions.length),
-	);
+	const [backgroundIndex, setBackgroundIndex] = useState(0);
 	const [noise, setNoise] = useState(null);
 	const [image, setImage] = useState(null);
 
@@ -117,11 +116,11 @@ function App() {
 
 	return (
 		<div
-			className={`relative flex h-screen w-screen flex-col items-center justify-center ${GradientOptions[backgroundIndex]} overflow-hidden`}
+			className={`relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden ${GradientOptions[backgroundIndex]}`}
 		>
 			<div className="z-10 translate-y-5">
 				<div
-					className="z-10 flex aspect-video h-[860px] scale-[.66] flex-col gap-4 overflow-hidden rounded-[12px] border border-white border-opacity-40 bg-white bg-opacity-40 p-4 shadow-lg backdrop-blur-sm"
+					className="z-10 flex aspect-video h-[860px] scale-[.66] flex-col gap-4 overflow-hidden rounded-[12px] border border-white border-opacity-40 bg-white bg-opacity-10 p-4 shadow-lg backdrop-blur-sm"
 					style={{ aspectRatio: ratio }}
 				>
 					<div className="flex h-fit w-full gap-3">
@@ -144,7 +143,7 @@ function App() {
 					</div>
 				</div>
 			</div>
-			<div className="absolute left-auto top-0 hidden items-center justify-between rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-1 px-4 shadow-sm backdrop-blur-sm">
+			<div className="absolute left-auto top-0 hidden items-center justify-between rounded-b-[12px] border-x border-b border-white border-opacity-10 bg-white bg-opacity-10 p-1 px-4 shadow-sm backdrop-blur-sm">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
@@ -156,11 +155,11 @@ function App() {
 				</svg>
 			</div>
 			<div className="absolute -top-11 left-auto z-20 flex  w-1/2 translate-y-11 items-center justify-between gap-2">
-				<div className="flex h-11 w-fit gap-2 rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-2 shadow-sm backdrop-blur-sm ">
+				<div className="flex h-11 w-fit gap-2 rounded-b-[12px] border-x border-b border-white border-opacity-10 bg-white bg-opacity-10 p-2 shadow-sm backdrop-blur-sm ">
 					{image ? (
 						<button
 							onClick={removeImage}
-							className="relative flex h-full items-center justify-center rounded-md border border-white border-opacity-40 px-2 shadow-sm"
+							className="relative flex h-full items-center justify-center rounded-md border border-white border-opacity-10 px-2 shadow-sm"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -177,7 +176,7 @@ function App() {
 							</svg>
 						</button>
 					) : (
-						<div className="relative flex h-full items-center justify-center rounded-md border border-white border-opacity-40 px-2 shadow-sm ">
+						<div className="relative flex h-full items-center justify-center rounded-md border border-white border-opacity-10 px-2 shadow-sm ">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"
@@ -200,9 +199,9 @@ function App() {
 						</div>
 					)}
 				</div>
-				<div className="flex h-11 w-full flex-1 gap-2 rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-2 shadow-sm backdrop-blur-sm ">
+				<div className="flex h-11 w-full flex-1 gap-2 rounded-b-[12px] border-x border-b border-white border-opacity-10 bg-white bg-opacity-10 p-2 shadow-sm backdrop-blur-sm ">
 					<input
-						className="flex-1 rounded-md border border-white border-opacity-40 bg-transparent px-2 text-sm text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-40"
+						className="flex-1 rounded-md border border-white border-opacity-10 bg-transparent px-2 text-sm text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-10"
 						value={url}
 						onChange={handleUrlChange}
 						onBlur={handleUrlBlur}
@@ -214,7 +213,7 @@ function App() {
 						}}
 					></input>
 					<button
-						className="rounded-md border border-white border-opacity-40 px-2 shadow-sm"
+						className="rounded-md border border-white border-opacity-10 px-2 shadow-sm"
 						id="desktop"
 						onClick={() => changeRatio("desktop")}
 					>
@@ -234,7 +233,7 @@ function App() {
 						</svg>
 					</button>
 					<button
-						className="rounded-md border border-white border-opacity-40 px-2 shadow-sm"
+						className="rounded-md border border-white border-opacity-10 px-2 shadow-sm"
 						id="tablet"
 						onClick={() => changeRatio("tablet")}
 					>
@@ -254,7 +253,7 @@ function App() {
 						</svg>
 					</button>
 					<button
-						className="rounded-md border border-white border-opacity-40 px-2 shadow-sm"
+						className="rounded-md border border-white border-opacity-10 px-2 shadow-sm"
 						id="mobile"
 						onClick={() => changeRatio("mobile")}
 					>
@@ -274,9 +273,9 @@ function App() {
 						</svg>
 					</button>
 				</div>
-				<div className="flex h-11 w-fit gap-2 rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-2 shadow-sm backdrop-blur-sm ">
+				<div className="flex h-11 w-fit gap-2 rounded-b-[12px] border-x border-b border-white border-opacity-10 bg-white bg-opacity-10 p-2 shadow-sm backdrop-blur-sm ">
 					<button
-						className="flex w-24 items-center justify-center rounded-md border border-white border-opacity-40 px-2 shadow-sm"
+						className="flex w-24 items-center justify-center rounded-md border border-white border-opacity-10 px-2 shadow-sm"
 						onClick={cycleGradient}
 					>
 						<svg
@@ -294,7 +293,7 @@ function App() {
 						</svg>
 					</button>
 					<button
-						className="rounded-md border border-white border-opacity-40 px-2 shadow-sm"
+						className="rounded-md border border-white border-opacity-10 px-2 shadow-sm"
 						id="mobile"
 						onClick={() => toggleNoise()}
 					>
@@ -335,6 +334,9 @@ function App() {
 				style={{ aspectRatio: 16 / 9, backgroundImage: noise }}
 			>
 				<div className="h-full w-full"></div>
+			</div>
+			<div className="fixed left-0 top-0 h-screen w-screen">
+				<div className="blur-max absolute left-1/4 top-1/4 h-1/2 w-1/2 rounded-full bg-gradient-to-r from-blue-400 to-pink-500"></div>
 			</div>
 		</div>
 	);
