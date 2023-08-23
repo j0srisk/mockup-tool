@@ -277,7 +277,7 @@ function App() {
 				<div className="flex h-11 w-fit gap-2 rounded-b-[12px] border-x border-b border-white border-opacity-40 bg-white bg-opacity-40 p-2 shadow-sm backdrop-blur-sm ">
 					<button
 						className="flex w-24 items-center justify-center rounded-md border border-white border-opacity-40 px-2 shadow-sm"
-						onClick={randomGradient}
+						onClick={cycleGradient}
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
