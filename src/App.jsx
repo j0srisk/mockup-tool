@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const GradientOptions = [
+	"",
 	"bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500",
 	"bg-gradient-to-r from-blue-500 via-teal-500 to-green-500",
 	"bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500",
@@ -334,9 +335,9 @@ function App() {
 			>
 				<div className="h-full w-full"></div>
 			</div>
-			<div className="fixed left-0 top-0 h-screen w-screen">
+			<div className="fixed flex h-screen w-screen items-center justify-center">
 				<div
-					className={`blur-max absolute left-1/4 top-1/4 h-1/2 w-1/2 rounded-full ${GradientOptions[backgroundIndex]}`}
+					className={`blur-max absolute aspect-square h-1/3 rounded-full ${GradientOptions[backgroundIndex]}`}
 				></div>
 			</div>
 		</div>
