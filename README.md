@@ -30,5 +30,4 @@ Technologies used in the project:
 *   React JS
 *   TailwindCSS
 *   Javascript
-*   Vite
 *   Netlify
