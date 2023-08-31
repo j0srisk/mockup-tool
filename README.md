@@ -1,16 +1,16 @@
-<h1 align="center" id="title">Template React Tailwind</h1>
+<h1 align="center" id="title">Mockup Tool</h1>
 
-<p id="description">Description Paragraph</p>
+<p id="description">A quick mockup tool built to take beautiful screenshots of websites using Arc browser's screenshot tools. Uses iFrames to allow for page manipulation before screenshotting. Built to take screenshots of my projects for my portfolio.</p>
 
 <h2>🚀 Demo</h2>
 
-Netlify Badge
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5a9abdfe-e6b3-4651-b68b-6177c3d60306/deploy-status)](https://app.netlify.com/sites/marvelous-hotteok-f68d13/deploys)
 
-[Link](Link)
+[Live Link](https://mockup-tool.josephrisk.com/)
 
 <h2>Project Screenshots:</h2>
 
-<img src="screenshot.png" alt="project-screenshot" width="400" height="auto">
+<img src="https://github.com/j0srisk/personal-site/blob/main/src/assets/images/projects/mockup-tool.png?raw=true" alt="project-screenshot" width="400" height="auto">
 
   
   
@@ -18,9 +18,8 @@ Netlify Badge
 
 Here're some of the project's best features:
 
-*   Feature 1
-*   Feature 2
-*   Feature 3
+*   Responsive Design
+*   Customizable Background
 
   
   
@@ -29,5 +28,7 @@ Here're some of the project's best features:
 Technologies used in the project:
 
 *   React JS
+*   TailwindCSS
+*   Javascript
 *   Vite
-*   Tailwind
+*   Netlify
